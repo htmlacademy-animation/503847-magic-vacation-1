@@ -5,6 +5,7 @@
 
   .swiper-wrapper {
     min-height: 100vh;
+    box-sizing: border-box;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
@@ -96,6 +97,8 @@
   font-size: 1.8rem;
   line-height: 2rem;
 
+
+
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
     max-width: 340px;
@@ -121,6 +124,30 @@
     min-height: 14rem;
     font-size: 1.4rem;
     line-height: 1.5rem;
+  }
+}
+  .slider__item-text {
+    opacity: 0;
+    transform: translateX(20px);
+    transition-property: opacity, transform;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: .3s;
+  }
+
+  .swiper-slide-active,
+  .swiper-slide-next {
+  .screen.active &.swiper-slide-active,
+  .screen.active &.swiper-slide-next {
+    .slider__item-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  &.swiper-slide-next {
+    .slider__item-text {
+      transition-delay: .5s;
+    }
   }
 }
 
