@@ -1818,10 +1818,13 @@ img {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 0px;
+      width: 100%;
       height: 2px;
       background-color: #ffffff;
-      left: 0; }
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: 100% 0;
+      transition: transform 600ms ease-in-out; }
       @media (min-width: 2000px) {
         .page-header__menu a::after {
           left: -5px;
@@ -1837,7 +1840,7 @@ img {
           right: 0;
           background-color: #5f458c; } }
     .page-header__menu a.active::after {
-      width: 100%;
+      transform: scaleX(1);
       display: block; }
     .page-header__menu a:hover, .page-header__menu a:focus {
       color: #a67ee5;
@@ -1845,8 +1848,8 @@ img {
       .page-header__menu a:hover::after, .page-header__menu a:focus::after {
         opacity: 1;
         background-color: #a67ee5;
-        width: 100%;
-        transition: width .5s ease-in-out; }
+        transform-origin: 0;
+        transform: scaleX(1); }
 
 .page-header__social {
   margin-left: 4.8rem; }
@@ -2936,18 +2939,23 @@ img {
 
 .slider__item-text {
   opacity: 0;
-  transform: translateX(20px); }
-
-.swiper-slide-active .slider__item-text, .swiper-slide-next .slider__item-text {
-  opacity: 1;
-  transform: translateX(0);
+  transform: translateX(20px);
   transition-property: opacity, transform;
-  transition-duration: 0.2s;
+  transition-duration: .5s;
   transition-timing-function: ease-in-out;
-  transition-delay: 0.2s; }
-
-.swiper-slide-next .slider__item-text {
   transition-delay: .3s; }
+
+.screen.active .swiper-slide-active.swiper-slide-active .slider__item-text,
+.screen.active .swiper-slide-active.swiper-slide-next .slider__item-text, .screen.active
+.swiper-slide-next.swiper-slide-active .slider__item-text,
+.screen.active
+.swiper-slide-next.swiper-slide-next .slider__item-text {
+  opacity: 1;
+  transform: translateX(0); }
+
+.swiper-slide-active.swiper-slide-next .slider__item-text,
+.swiper-slide-next.swiper-slide-next .slider__item-text {
+  transition-delay: .5s; }
 
 .slider__controls {
   position: absolute;
@@ -3083,7 +3091,6 @@ img {
 .social-block {
   position: relative; }
   .social-block:hover .social-block__list {
-    opacity: 1;
     pointer-events: auto; }
 
 .social-block__toggler {
@@ -3122,7 +3129,8 @@ img {
     background-color: #ffffff;
     border: 2px solid #ffffff;
     z-index: -1;
-    transition-property: width, height, border-color, background-color;
+    transform: translate(-50%, -50%) scale(1);
+    transition-property: transform, border-color, background-color;
     transition-duration: .2s;
     transition-timing-function: ease-in; }
   .social-block__toggler svg {
@@ -3138,8 +3146,7 @@ img {
     color: #a67ee5; }
     .social-block__toggler:hover::before,
     .social-block--active .social-block__toggler::before {
-      width: 112.5%;
-      height: 112.5%; }
+      transform: translate(-50%, -50%) scale(1.125); }
   .social-block__toggler:focus {
     color: #a67ee5;
     outline: none; }
@@ -3151,8 +3158,7 @@ img {
   .social-block__toggler:active, .social-block__toggler:active:focus {
     color: #ffffff; }
     .social-block__toggler:active::before, .social-block__toggler:active:focus::before {
-      width: 100%;
-      height: 100%;
+      transform: translate(-50%, -50%) scale(1);
       background-color: #a67ee5;
       border-color: #a67ee5; }
 
@@ -3164,7 +3170,6 @@ img {
   top: 100%;
   right: 0;
   margin-top: 1.5rem;
-  opacity: 0;
   pointer-events: none; }
   @media (min-width: 2000px) {
     .social-block__list {
@@ -3208,10 +3213,7 @@ img {
     pointer-events: auto; }
     .social-block--active .social-block__list li {
       opacity: 1;
-      margin-top: 0;
-      transition-property: opacity, margin-top;
-      transition-duration: .3s;
-      transition-timing-function: ease-in; }
+      transform: translateY(0); }
       .social-block--active .social-block__list li:nth-child(2) {
         transition-delay: .2s; }
       .social-block--active .social-block__list li:nth-child(3) {
@@ -3220,7 +3222,10 @@ img {
     flex: none;
     margin-bottom: 0.5rem;
     opacity: 0;
-    margin-top: 1rem; }
+    transform: translateY(2rem);
+    transition-property: opacity, transform;
+    transition-duration: .4s;
+    transition-timing-function: ease-in; }
     @media (min-width: 2000px) {
       .social-block__list li {
         margin-bottom: 5px; } }
