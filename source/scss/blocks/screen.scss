@@ -5,9 +5,11 @@
   min-height: 100vh;
   z-index: 1;
   overflow: hidden;
+  
 
   &--hidden {
     visibility: hidden;
+
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -309,7 +311,8 @@
 }
 
 .screen--prizes {
-  background-color: $c-dark;
+  // background-color: $c-dark;
+  background-color: transparent;
 }
 
 .screen--game {
